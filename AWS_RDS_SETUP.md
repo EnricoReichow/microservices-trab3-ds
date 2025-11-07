@@ -43,8 +43,8 @@ Todos os serviços estão configurados com as mesmas credenciais no `application
 
 ```properties
 spring.datasource.url=jdbc:postgresql://distributed-system-db-project.cr46koqmcn11.sa-east-1.rds.amazonaws.com:5432/postgres
-spring.datasource.username=admin
-spring.datasource.password=senha
+spring.datasource.username=postgres
+spring.datasource.password=paproject987#
 spring.datasource.driver-class-name=org.postgresql.Driver
 ```
 
