@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="457bf79f-da2e-40dd-9c3c-eda9d3d648d1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+    <list default="true" id="a378bedf-0c34-4a62-9312-9f27ddc9f13e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-teste/cardiologista/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-teste/cardiologista/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-teste/clinico-geral/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-teste/clinico-geral/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-teste/neurologista/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-teste/neurologista/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-teste/recepcionista/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-teste/recepcionista/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-teste/triagem-sender/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-teste/triagem-sender/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +26,22 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -44,6 +56,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Application.CardiologistaMain.executor": "Run",
     "Application.ClinicoGeralMain.executor": "Run",
     "Application.Main.executor": "Run",
@@ -51,16 +64,23 @@
     "Application.Recepcionista.Main.executor": "Run",
     "Application.RecepcionistaMain.executor": "Run",
     "Application.TriagemSenderMain.executor": "Run",
+    "Docker.docker: Compose Deployment.executor": "Run",
+    "Maven.cardiologista [clean,install].executor": "Run",
     "Maven.microservices-trab3-ds [clean,install].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
+    "SHELLCHECK.PATH": "C:\\Users\\fcizanosky\\AppData\\Roaming\\JetBrains\\IdeaIC2025.2\\plugins\\Shell Script\\shellcheck.exe",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "inicio-trab-4",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/enrico_reichow/Documents/bcc-furb/bcc-furb-6-sem/distributed-system/microservices-trab3-ds/spring-teste/cardiologista",
-    "onboarding.tips.debug.path": "/home/enrico_reichow/Documents/bcc-furb/bcc-furb-6-sem/distributed-system/microservices-trab3-ds/src/main/java/org/example/Main.java"
+    "onboarding.tips.debug.path": "/home/enrico_reichow/Documents/bcc-furb/bcc-furb-6-sem/distributed-system/microservices-trab3-ds/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "File.Encoding"
   }
 }]]></component>
   <component name="RunAnythingCache">
@@ -73,7 +93,7 @@
       <recentPaths value="$PROJECT_DIR$/spring-teste/cardiologista" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.ClinicoGeralMain">
+  <component name="RunManager" selected="Docker.docker: Compose Deployment">
     <configuration name="CardiologistaMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Cardiologista.CardiologistaMain" />
       <module name="microservices-trab3-ds" />
@@ -126,32 +146,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TriagemSenderMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="TriagemSender.TriagemSenderMain" />
-      <module name="microservices-trab3-ds" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="TriagemSender.Paciente" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="src/docker/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker: Compose Deployment" />
         <item itemvalue="Application.RecepcionistaMain" />
         <item itemvalue="Application.CardiologistaMain" />
         <item itemvalue="Application.NeurologistaMain" />
         <item itemvalue="Application.ClinicoGeralMain" />
-        <item itemvalue="Application.TriagemSenderMain" />
       </list>
     </recent_temporary>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="457bf79f-da2e-40dd-9c3c-eda9d3d648d1" name="Changes" comment="" />
+      <changelist id="a378bedf-0c34-4a62-9312-9f27ddc9f13e" name="Changes" comment="" />
       <created>1758848103942</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -159,15 +183,16 @@
     </task>
     <servers />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-core" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.validation:jakarta.validation-api" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.persistence:jakarta.persistence-api" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.data:spring-data-commons" />
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.http" />
+    <option featureType="dependencySupport" implementationName="java:org.hibernate.validator:hibernate-validator" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-messaging" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-webmvc" />
+    <option featureType="dependencySupport" implementationName="java:org.projectlombok:lombok" />
   </component>
 </project>
