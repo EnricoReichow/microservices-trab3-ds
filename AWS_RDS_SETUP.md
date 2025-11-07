@@ -13,8 +13,8 @@ O sistema utiliza uma **instância única AWS RDS PostgreSQL** com um **database
 | **Endpoint** | `distributed-system-db-project.cr46koqmcn11.sa-east-1.rds.amazonaws.com` |
 | **Porta** | `5432` |
 | **Database** | `postgres` |
-| **Username** | `admin` |
-| **Password** | `senha` |
+| **Username** | `postgres` |
+| **Password** | `paproject987#` |
 | **Região** | `sa-east-1` (São Paulo) |
 
 ### Tabela Compartilhada
@@ -61,9 +61,10 @@ spring.datasource.driver-class-name=org.postgresql.Driver
 ### Via psql (linha de comando)
 ```bash
 psql -h distributed-system-db-project.cr46koqmcn11.sa-east-1.rds.amazonaws.com \
-     -U admin \
+     -U postgres \
      -d postgres \
-     -p 5432
+     -p 5432 \
+     -W paproject987#
 ```
 
 ### Via DBeaver/pgAdmin
