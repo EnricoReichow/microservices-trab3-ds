@@ -1,0 +1,45 @@
+package com.example.cardiologista.listener;
+
+import com.example.cardiologista.config.CardiologistaRabbitMQConfig;
+import com.example.cardiologista.model.Paciente;
+import com.example.cardiologista.service.CardiologistaService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CardiologistaListener {
+
+    private static final Logger logger = LoggerFactory.getLogger(CardiologistaListener.class);
+
+    @Autowired
+    private CardiologistaService cardiologistaService;
+
+    @RabbitListener(queues = CardiologistaRabbitMQConfig.CARDIO_QUEUE)
+    public void receberPaciente(Paciente paciente) {
+        logger.info("Paciente recebido na cardiologia: {} com sintoma: {}", 
+                    paciente.getNome(), paciente.getSintomas());
+        
+        try {
+            cardiologistaService.atenderPaciente(paciente);
+        } catch (Exception e) {
+            logger.error("Erro ao atender paciente {}: {}", 
+                        paciente.getNome(), e.getMessage(), e);
+        }
+    }
+
+    @RabbitListener(queues = CardiologistaRabbitMQConfig.FALLBACK_CARDIO_QUEUE)
+    public void receberPacienteFallback(Paciente paciente) {
+        logger.info("Paciente recebido na fila de fallback cardiologia: {} com sintoma: {}", 
+                    paciente.getNome(), paciente.getSintomas());
+        
+        try {
+            cardiologistaService.atenderPaciente(paciente);
+        } catch (Exception e) {
+            logger.error("Erro ao atender paciente do fallback {}: {}", 
+                        paciente.getNome(), e.getMessage(), e);
+        }
+    }
+}
