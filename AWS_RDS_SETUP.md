@@ -70,8 +70,8 @@ psql -h distributed-system-db-project.cr46koqmcn11.sa-east-1.rds.amazonaws.com \
 1. Host: `distributed-system-db-project.cr46koqmcn11.sa-east-1.rds.amazonaws.com`
 2. Port: `5432`
 3. Database: `postgres`
-4. Username: `admin`
-5. Password: `senha`
+4. Username: `postgres`
+5. Password: `paproject987#`
 
 ### Consultas Úteis
 
