@@ -1,0 +1,240 @@
+### Exemplos de Requisições HTTP para testar o sistema
+
+### 1. RECEPCIONISTA - Registrar Pacientes
+
+# Registrar paciente com sintoma cardíaco (será direcionado ao Cardiologista)
+POST http://localhost:8081/api/recepcionista/pacientes
+Content-Type: application/json
+
+{
+  "nome": "João Silva",
+  "sexoBiologico": "Masculino",
+  "dataNascimento": "15/05/1980",
+  "tipoSanguineo": "O+",
+  "estadoCivil": "Casado",
+  "sintomas": "Infarto"
+}
+
+###
+
+# Registrar paciente com sintoma neurológico (será direcionado ao Neurologista)
+POST http://localhost:8081/api/recepcionista/pacientes
+Content-Type: application/json
+
+{
+  "nome": "Maria Santos",
+  "sexoBiologico": "Feminino",
+  "dataNascimento": "20/03/1975",
+  "tipoSanguineo": "A+",
+  "estadoCivil": "Solteiro",
+  "sintomas": "Dor de cabeça"
+}
+
+###
+
+# Registrar paciente com sintoma geral (será direcionado ao Clínico Geral)
+POST http://localhost:8081/api/recepcionista/pacientes
+Content-Type: application/json
+
+{
+  "nome": "Pedro Oliveira",
+  "sexoBiologico": "Masculino",
+  "dataNascimento": "10/08/1990",
+  "tipoSanguineo": "B+",
+  "estadoCivil": "Casado",
+  "sintomas": "Dor de barriga"
+}
+
+###
+
+# Registrar paciente com pressão alta (Cardiologista)
+POST http://localhost:8081/api/recepcionista/pacientes
+Content-Type: application/json
+
+{
+  "nome": "Ana Costa",
+  "sexoBiologico": "Feminino",
+  "dataNascimento": "05/12/1965",
+  "tipoSanguineo": "AB+",
+  "estadoCivil": "Viúvo",
+  "sintomas": "Pressão alta"
+}
+
+###
+
+# Registrar paciente com princípio de AVC (Neurologista)
+POST http://localhost:8081/api/recepcionista/pacientes
+Content-Type: application/json
+
+{
+  "nome": "Carlos Mendes",
+  "sexoBiologico": "Masculino",
+  "dataNascimento": "22/07/1958",
+  "tipoSanguineo": "O-",
+  "estadoCivil": "Casado",
+  "sintomas": "Perda dos movimentos de um lado (princípio AVC)"
+}
+
+###
+
+# Registrar paciente com dor muscular (Clínico Geral)
+POST http://localhost:8081/api/recepcionista/pacientes
+Content-Type: application/json
+
+{
+  "nome": "Juliana Ferreira",
+  "sexoBiologico": "Feminino",
+  "dataNascimento": "30/01/1992",
+  "tipoSanguineo": "A-",
+  "estadoCivil": "Solteiro",
+  "sintomas": "Dor muscular"
+}
+
+###
+
+### 2. RECEPCIONISTA - Consultas
+
+# Listar todos os pacientes registrados
+GET http://localhost:8081/api/recepcionista/pacientes
+
+###
+
+# Buscar paciente específico por ID
+GET http://localhost:8081/api/recepcionista/pacientes/1
+
+###
+
+# Listar pacientes aguardando triagem
+GET http://localhost:8081/api/recepcionista/pacientes/status/AGUARDANDO_TRIAGEM
+
+###
+
+# Listar pacientes aguardando consulta
+GET http://localhost:8081/api/recepcionista/pacientes/status/AGUARDANDO_CONSULTA
+
+###
+
+# Health check do serviço
+GET http://localhost:8081/api/recepcionista/health
+
+###
+
+### 3. CARDIOLOGISTA - Consultas
+
+# Listar todos os pacientes do cardiologista
+GET http://localhost:8083/api/cardiologista/pacientes
+
+###
+
+# Listar apenas pacientes atendidos
+GET http://localhost:8083/api/cardiologista/pacientes/atendidos
+
+###
+
+# Buscar paciente específico
+GET http://localhost:8083/api/cardiologista/pacientes/1
+
+###
+
+# Health check
+GET http://localhost:8083/api/cardiologista/health
+
+###
+
+### 4. NEUROLOGISTA - Consultas
+
+# Listar todos os pacientes do neurologista
+GET http://localhost:8085/api/neurologista/pacientes
+
+###
+
+# Listar apenas pacientes atendidos
+GET http://localhost:8085/api/neurologista/pacientes/atendidos
+
+###
+
+# Buscar paciente específico
+GET http://localhost:8085/api/neurologista/pacientes/2
+
+###
+
+# Health check
+GET http://localhost:8085/api/neurologista/health
+
+###
+
+### 5. CLÍNICO GERAL - Consultas
+
+# Listar todos os pacientes do clínico geral
+GET http://localhost:8084/api/clinico-geral/pacientes
+
+###
+
+# Listar apenas pacientes atendidos
+GET http://localhost:8084/api/clinico-geral/pacientes/atendidos
+
+###
+
+# Buscar paciente específico
+GET http://localhost:8084/api/clinico-geral/pacientes/3
+
+###
+
+# Health check
+GET http://localhost:8084/api/clinico-geral/health
+
+###
+
+### 6. HEALTH CHECKS - Verificar todos os serviços
+
+# Recepcionista
+GET http://localhost:8081/api/recepcionista/health
+
+###
+
+# Triagem (não tem endpoint HTTP, apenas listener)
+# Verificar logs do serviço
+
+###
+
+# Cardiologista
+GET http://localhost:8083/api/cardiologista/health
+
+###
+
+# Clínico Geral
+GET http://localhost:8084/api/clinico-geral/health
+
+###
+
+# Neurologista
+GET http://localhost:8085/api/neurologista/health
+
+###
+
+### CENÁRIO COMPLETO DE TESTE
+
+# 1. Registrar paciente com infarto
+POST http://localhost:8081/api/recepcionista/pacientes
+Content-Type: application/json
+
+{
+  "nome": "Teste Infarto",
+  "sexoBiologico": "Masculino",
+  "dataNascimento": "01/01/1970",
+  "tipoSanguineo": "O+",
+  "estadoCivil": "Casado",
+  "sintomas": "Infarto"
+}
+
+###
+
+# 2. Aguardar 2 segundos e verificar que foi triado
+GET http://localhost:8081/api/recepcionista/pacientes/status/AGUARDANDO_CONSULTA
+
+###
+
+# 3. Aguardar 10 segundos (tempo de consulta) e verificar que foi atendido
+GET http://localhost:8083/api/cardiologista/pacientes/atendidos
+
+###

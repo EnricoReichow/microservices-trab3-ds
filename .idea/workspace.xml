@@ -54,35 +54,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.CardiologistaMain.executor": "Run",
-    "Application.ClinicoGeralMain.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.NeurologistaMain.executor": "Run",
-    "Application.Recepcionista.Main.executor": "Run",
-    "Application.RecepcionistaMain.executor": "Run",
-    "Application.TriagemSenderMain.executor": "Run",
-    "Docker.docker: Compose Deployment.executor": "Run",
-    "Maven.cardiologista [clean,install].executor": "Run",
-    "Maven.microservices-trab3-ds [clean,install].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHELLCHECK.PATH": "C:\\Users\\fcizanosky\\AppData\\Roaming\\JetBrains\\IdeaIC2025.2\\plugins\\Shell Script\\shellcheck.exe",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "inicio-trab-4",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/enrico_reichow/Documents/bcc-furb/bcc-furb-6-sem/distributed-system/microservices-trab3-ds/spring-teste/cardiologista",
-    "onboarding.tips.debug.path": "/home/enrico_reichow/Documents/bcc-furb/bcc-furb-6-sem/distributed-system/microservices-trab3-ds/src/main/java/org/example/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "File.Encoding"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.CardiologistaMain.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ClinicoGeralMain.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.NeurologistaMain.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Recepcionista.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RecepcionistaMain.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TriagemSenderMain.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.cardiologista [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.microservices-trab3-ds [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHELLCHECK.PATH&quot;: &quot;C:\\Users\\fcizanosky\\AppData\\Roaming\\JetBrains\\IdeaIC2025.2\\plugins\\Shell Script\\shellcheck.exe&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;inicio-trab-4&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/enrico_reichow/Documents/bcc-furb/bcc-furb-6-sem/distributed-system/microservices-trab3-ds/spring-teste/cardiologista&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/home/enrico_reichow/Documents/bcc-furb/bcc-furb-6-sem/distributed-system/microservices-trab3-ds/src/main/java/org/example/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/spring-teste/recepcionista/src/main/java/com/example/utils_sh_md" />
+    </key>
+  </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean install" />
@@ -93,7 +98,7 @@
       <recentPaths value="$PROJECT_DIR$/spring-teste/cardiologista" />
     </option>
   </component>
-  <component name="RunManager" selected="Docker.docker: Compose Deployment">
+  <component name="RunManager" selected="Application.CardiologistaMain">
     <configuration name="CardiologistaMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Cardiologista.CardiologistaMain" />
       <module name="microservices-trab3-ds" />
@@ -165,9 +170,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CardiologistaMain" />
         <item itemvalue="Docker.docker: Compose Deployment" />
         <item itemvalue="Application.RecepcionistaMain" />
-        <item itemvalue="Application.CardiologistaMain" />
         <item itemvalue="Application.NeurologistaMain" />
         <item itemvalue="Application.ClinicoGeralMain" />
       </list>
