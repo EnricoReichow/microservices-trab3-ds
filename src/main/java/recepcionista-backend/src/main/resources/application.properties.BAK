@@ -1,22 +1,23 @@
 # Nome da Aplicacao
 spring.application.name=recepcionista-backend
 
-# Configuracao do Servidor Web
+# Configuracao do Servidor Web (Tomcat embutido)
+# A porta padrao é 8080
 # server.port=8080
 
 # Configuracao de Conexao do RabbitMQ
+# Substitua pelos seus dados de conexao
 spring.rabbitmq.host=localhost
-spring.rabbitmq.port=5672
+spring.rabbitmq.port=5672   
 spring.rabbitmq.username=user
 spring.rabbitmq.password=password
 
-# Propriedades customizadas
+# Propriedades customizadas para desacoplar nomes do codigo
 app.rabbitmq.exchange=exchangePA
 app.rabbitmq.queue=triagem
 app.rabbitmq.routingkey=paciente.triagem
 
-# Nova routing key para o servico de logger
-app.rabbitmq.routingkey-log=paciente.log
-
 # Controle para ativar o modo CLI
+# false = Inicia o servidor web (padrão)
+# true  = Inicia o loop do CLI e NAO inicia o servidor web
 app.cli.enabled=false

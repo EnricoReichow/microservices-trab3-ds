@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RecepcionistaBackendApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(RecepcionistaBackendApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(RecepcionistaBackendApplication.class, args);
+	}
 
 }
