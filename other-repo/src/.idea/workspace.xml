@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8c973e64-ccf6-4f04-97b7-7e6927bd06c5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/main/java/logger/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/src/main/java/com/example/logger/LoggerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/src/main/java/com/example/logger/config/RabbitMQConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/src/main/java/com/example/logger/consumer/PacienteConsumer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/src/main/java/com/example/logger/domain/PacienteDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/src/main/java/com/example/logger/endpoints/PacienteController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/src/main/java/com/example/logger/errors/error" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/src/main/java/com/example/logger/model/entity/AtendimentoEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/src/main/java/com/example/logger/model/entity/BaseEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/src/main/java/com/example/logger/model/entity/PacienteEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/src/main/java/com/example/logger/model/repository/AtendimentoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/src/main/java/com/example/logger/model/repository/PacienteRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/src/main/java/com/example/logger/service/AtendimentoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/src/main/java/com/example/logger/service/PacienteService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/src/main/resources/postgres/V1__create_tables.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/logger/src/test/java/com/example/logger/LoggerApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/recepcionista-backend/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/recepcionista-backend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/recepcionista-backend/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/recepcionista-backend/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/recepcionista-backend/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/recepcionista-backend/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/recepcionista-backend/src/main/java/com/example/recepcionista_backend/RecepcionistaBackendApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/recepcionista-backend/src/main/java/com/example/recepcionista_backend/config/RabbitMQConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/recepcionista-backend/src/main/java/com/example/recepcionista_backend/endpoints/PacienteController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/recepcionista-backend/src/main/java/com/example/recepcionista_backend/model/Paciente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/recepcionista-backend/src/main/java/com/example/recepcionista_backend/runner/CliRunner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/recepcionista-backend/src/main/java/com/example/recepcionista_backend/runner/RabbitConnectionLogger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/recepcionista-backend/src/main/java/com/example/recepcionista_backend/service/RabbitMQService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/recepcionista-backend/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/recepcionista-backend/src/main/resources/application.properties.BAK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/recepcionista-backend/src/test/java/com/example/recepcionista_backend/RecepcionistaBackendApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="35YzQ7VnHu27Rn33zB2s6rk37zR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "servicos-spring",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/enrico_reichow/Documents/microservices-trab3-ds/src"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8c973e64-ccf6-4f04-97b7-7e6927bd06c5" name="Changes" comment="" />
+      <created>1763301774291</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1763301774291</updated>
+    </task>
+    <servers />
+  </component>
+</project>
