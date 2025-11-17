@@ -14,48 +14,44 @@ import java.util.Optional;
 public class AtendimentoService {
 
     private final AtendimentoRepository atendimentoRepository;
-    private static final String STATUS_ALTA = "Nenhum (teve alta)";
+
+    private static final String STATUS_ALTA_PREFIX = "Alta - ";
 
     public AtendimentoService(AtendimentoRepository atendimentoRepository) {
         this.atendimentoRepository = atendimentoRepository;
     }
 
-    /**
-     * Processa o atendimento do paciente vindo da fila.
-     * - Se o paciente não tiver um atendimento "aberto", cria um novo.
-     * - Se o paciente tiver um atendimento "aberto", atualiza-o.
-     *
-     * @param paciente O PacienteEntity (já processado pelo PacienteService)
-     * @param pacienteDTO O DTO original da fila (para pegar sintomas e médico)
-     */
     @Transactional
     public void processarAtendimento(PacienteEntity paciente, PacienteDTO pacienteDTO) {
 
-        // 1. Busca o último atendimento ABERTO (que NÃO SEJA "alta")
+        // MUDANÇA: Chamando o novo método @Query 'findLatestOpenAtendimentoByPaciente'
+        // MUDANÇA CRÍTICA: Devemos adicionar o wildcard '%' ao prefixo
+        // para que a query 'NOT LIKE' funcione corretamente.
+        String prefixoComWildcard = STATUS_ALTA_PREFIX + "%";
+
         Optional<AtendimentoEntity> atendimentoAberto =
-                atendimentoRepository.findFirstByPacienteAndMedicoResponsavelNotOrderByIdDesc(paciente, STATUS_ALTA);
+                atendimentoRepository.findLatestOpenAtendimentoByPaciente(
+                        paciente,
+                        prefixoComWildcard
+                );
 
         AtendimentoEntity atendimento;
 
+        // O resto da sua lógica original está perfeita e permanece
         if (atendimentoAberto.isPresent()) {
-            // 2. ATENDIMENTO ABERTO EXISTE: Atualiza
             atendimento = atendimentoAberto.get();
             atendimento.setSintomas(pacienteDTO.getSintomas());
 
-            // Atualiza o médico se vier no DTO (ex: "Em triagem", ou "Dr. House")
             if (pacienteDTO.getMedicoResponsavel() != null) {
                 atendimento.setMedicoResponsavel(pacienteDTO.getMedicoResponsavel());
             }
-            // A data do atendimento não muda, pois estamos atualizando o mesmo atendimento
 
         } else {
-            // 3. NÃO HÁ ATENDIMENTO ABERTO: Cria um novo
             atendimento = new AtendimentoEntity();
             atendimento.setPaciente(paciente);
             atendimento.setSintomas(pacienteDTO.getSintomas());
-            atendimento.setDataAtendimento(LocalDate.now()); // Data de hoje
+            atendimento.setDataAtendimento(LocalDate.now());
 
-            // Define o médico. Se vier nulo da fila, define "Em triagem".
             String medico = (pacienteDTO.getMedicoResponsavel() != null)
                     ? pacienteDTO.getMedicoResponsavel()
                     : "Em triagem";
