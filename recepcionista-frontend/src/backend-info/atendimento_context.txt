@@ -1,6 +1,15 @@
+@GetMapping
+    public ResponseEntity<List<AtendimentoEntity>> listarTodosAtendimentos() {
+        List<AtendimentoEntity> atendimentos = atendimentoService.listarTodosAtendimentos();
+        return ResponseEntity.ok(atendimentos);
+    }
+
+
+-------------------------------------------------------
+
+
 package com.example.logger.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -14,7 +23,6 @@ public class AtendimentoEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "paciente_id", nullable = false)
-    @JsonIgnore
     private PacienteEntity paciente;
 
     @Column(columnDefinition = "TEXT")

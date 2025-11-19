@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.Normalizer;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -93,6 +94,11 @@ public class AtendimentoService {
                 logger.warn("Falha ao enviar mensagem Telegram: {}", ex.getMessage());
             }
         }
+    }
+
+    // Novo método adicionado para listar todos os atendimentos
+    public List<AtendimentoEntity> listarTodosAtendimentos() {
+        return atendimentoRepository.findAll();
     }
 
     private String determineChatIdBySpecialist(String especialista) {

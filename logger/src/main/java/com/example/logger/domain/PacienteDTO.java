@@ -1,4 +1,5 @@
 package com.example.logger.domain;
+    // Getters e Setters
 
 /**
  * Esta é a classe DTO (Data Transfer Object) que representa
