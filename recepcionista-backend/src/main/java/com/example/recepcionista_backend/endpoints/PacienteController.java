@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/pacientes") // Define o caminho base para este controller
+@RequestMapping("/api/recepcionista") // Define o caminho base para este controller
 public class PacienteController {
 
     private final RabbitMQService rabbitMQService;

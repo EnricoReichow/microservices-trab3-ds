@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import pacientes from './modules/pacientes'
 import atendimentos from './modules/atendimentos'
+import cadastroPaciente from './modules/cadastroPaciente'
 
 const store = createStore({
   state: {
@@ -26,7 +27,8 @@ const store = createStore({
   modules: {
     // Registre seus módulos aqui
     pacientes,
-    atendimentos
+    atendimentos,
+    cadastroPaciente
   }
 })
 
