@@ -32,7 +32,7 @@ Arquivos úteis
   - Estratégia: procura por linhas nos logs com mensagens indicando que um processo virou coordenador, extrai o ID, e usa esse ID para localizar o PID correspondente em `run/pid_map.txt` ou `run/pids.txt`.
 
 - `stop-instances.ps1`, `run-instances.ps1`, `stop-coordinator.ps1` (PowerShell)
-  - Versões equivalentes para Windows PowerShell.
+  - Versões equivalentes para Windows PowerShell. Veja a seção "PowerShell (Windows)" abaixo para exemplos.
 
 - `watch-logs.sh` (segue logs com tail -F)
 
@@ -40,7 +40,7 @@ Como os scripts mapeiam ID -> PID
 
 - `run-instances.sh` grava os PIDs em `run/pid_map.txt` (uma linha por instância: `<ID> <PID>`) e em `run/pids.txt` (apenas PIDs, uma linha por PID). Os scripts de parada usam esse `pid_map.txt` para encontrar o PID associado a um ID lógico.
 
-Uso típico
+Uso típico (bash)
 
 1) Iniciar 5 instâncias:
 ```bash
@@ -50,6 +50,8 @@ Uso típico
 2) Parar a instância de ID 3 (simulação):
 ```bash
 # Parar instancia
+./scripts/stop-process.sh --id 3 --dry-run
+# se ok
 ./scripts/stop-process.sh --id 3
 ```
 
@@ -58,7 +60,54 @@ Uso típico
 ./scripts/stop-instances.sh
 ```
 
+PowerShell (Windows)
+
+Os scripts PowerShell equivalentes estão disponíveis e seguem a mesma lógica:
+
+- `run-instances.ps1` — inicia N instâncias e salva PIDs em `run\pids.txt`.
+- `stop-instances.ps1` — para os PIDs de `run\pids.txt`.
+- `stop-process.ps1` — para um processo por ID lógico (usa `run\pid_map.txt`, remove a entrada e reconstrói `run\pids.txt`).
+- `stop-coordinator.ps1` — procura o líder nos logs e delega para `stop-process.ps1`.
+- `watch-logs.ps1` — segue logs via `Get-Content -Wait`.
+
+Exemplos PowerShell (abrir um PowerShell/Pwsh na pasta do projeto):
+
+1) Iniciar 5 instâncias (dry-run):
+```powershell
+pwsh -NoProfile -File ./scripts/run-instances.ps1 -Count 5 -DryRun
+```
+
+2) Iniciar 5 instâncias (real):
+```powershell
+pwsh -NoProfile -File ./scripts/run-instances.ps1 -Count 5
+```
+
+3) Parar a instância ID=3 (dry-run):
+```powershell
+pwsh -NoProfile -File ./scripts/stop-process.ps1 -Id 3 -DryRun
+```
+
+4) Parar a instância ID=3 (real):
+```powershell
+pwsh -NoProfile -File ./scripts/stop-process.ps1 -Id 3
+```
+
+5) Parar apenas o coordenador (detectado pelos logs):
+```powershell
+pwsh -NoProfile -File ./scripts/stop-coordinator.ps1 -DryRun
+# depois, sem dry-run
+pwsh -NoProfile -File ./scripts/stop-coordinator.ps1
+```
+
+6) Seguir logs em tempo real (PowerShell):
+```powershell
+# todos os logs
+pwsh -NoProfile -File ./scripts/watch-logs.ps1 -All
+# ou um id específico
+pwsh -NoProfile -File ./scripts/watch-logs.ps1 -Id 2
+```
+
 Notas
 
 - Sempre prefira usar os scripts para iniciar/parar porque eles mantêm `run/pid_map.txt` e `run/pids.txt` consistentes. Se você iniciar manualmente os processos sem gravar esses arquivos, os scripts podem não localizar os PIDs corretamente.
-- `stop-process.sh` remove a entrada do `run/pid_map.txt` e reconstrói `run/pids.txt` a partir dos mapeamentos restantes. Se quiser preservar os arquivos antes de testes destrutivos, faça backup manual.
+- `stop-process.sh` / `stop-process.ps1` remove a entrada do `run/pid_map.txt` e reconstrói `run/pids.txt` a partir dos mapeamentos restantes. Se quiser preservar os arquivos antes de testes destrutivos, faça backup manual.
