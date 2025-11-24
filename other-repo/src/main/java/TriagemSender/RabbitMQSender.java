@@ -14,6 +14,8 @@ import java.nio.charset.StandardCharsets;
  * Esta classe consome mensagens da fila de triagem, analisa os sintomas
  * dos pacientes e os redireciona para as filas especializadas apropriadas
  * (cardiologia, neurologia ou clínica geral) baseado nos sintomas apresentados.
+ * <p>
+ * IMPORTANTE: Apenas o coordenador (eleito via Bully Algorithm) processa a fila de triagem.
  */
 public class RabbitMQSender {
     private static final String EXCHANGE_NAME = "exchangePA";
@@ -30,14 +32,22 @@ public class RabbitMQSender {
 
     private static final Gson gson = new Gson();
 
-    public static void start() throws Exception {
+    private static Connection connection;
+    private static Channel channel;
+    private static String consumerTag;
+    private static volatile boolean isConsuming = false;
+
+    /**
+     * Inicializa a conexão com RabbitMQ e configura filas/exchanges
+     */
+    public static void initialize() throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
-        factory.setUsername("user");
+        factory.setUsername("triagem");
         factory.setPassword("password");
 
-        Connection connection = factory.newConnection();
-        Channel channel = connection.createChannel();
+        connection = factory.newConnection();
+        channel = connection.createChannel();
 
         // Configura exchange principal para roteamento de pacientes
         channel.exchangeDeclare(EXCHANGE_NAME, "direct", true);
@@ -46,11 +56,28 @@ public class RabbitMQSender {
         channel.queueDeclare(CARDIO_QUEUE, true, false, false, null);
         channel.queueDeclare(NEURO_QUEUE, true, false, false, null);
         channel.queueDeclare(GERAL_QUEUE, true, false, false, null);
+        channel.queueDeclare(TRIAGEM_QUEUE, true, false, false, null);
 
         // Vincula cada fila à sua routing key específica
         channel.queueBind(CARDIO_QUEUE, EXCHANGE_NAME, CARDIO_KEY);
         channel.queueBind(NEURO_QUEUE, EXCHANGE_NAME, NEURO_KEY);
         channel.queueBind(GERAL_QUEUE, EXCHANGE_NAME, GERAL_KEY);
+
+        System.out.println("[TRIAGEM] Conexão RabbitMQ inicializada");
+    }
+
+    /**
+     * Inicia o consumo da fila de triagem (apenas chamado quando este processo é o líder)
+     */
+    public static synchronized void startConsuming() throws Exception {
+        if (isConsuming) {
+            System.out.println("[TRIAGEM] Já está consumindo a fila");
+            return;
+        }
+
+        if (channel == null || !channel.isOpen()) {
+            throw new IllegalStateException("Canal RabbitMQ não está inicializado");
+        }
 
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
@@ -80,19 +107,64 @@ public class RabbitMQSender {
             channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
         };
 
-        channel.basicConsume(TRIAGEM_QUEUE, false, deliverCallback, consumerTag -> {});
+        consumerTag = channel.basicConsume(TRIAGEM_QUEUE, false, deliverCallback,
+            tag -> System.out.println("[TRIAGEM] Consumer cancelado: " + tag));
+
+        isConsuming = true;
+        System.out.println("[TRIAGEM] ✅ INICIOU consumo da fila de triagem (consumerTag: " + consumerTag + ")");
+    }
+
+    /**
+     * Para o consumo da fila de triagem (chamado quando este processo perde a liderança)
+     */
+    public static synchronized void stopConsuming() throws Exception {
+        if (!isConsuming || consumerTag == null) {
+            System.out.println("[TRIAGEM] Não está consumindo");
+            return;
+        }
+
+        if (channel != null && channel.isOpen()) {
+            channel.basicCancel(consumerTag);
+            isConsuming = false;
+            System.out.println("[TRIAGEM] ❌ PAROU consumo da fila de triagem");
+        }
+    }
+
+    /**
+     * @deprecated Use initialize() + startConsuming() ao invés disso
+     */
+    @Deprecated
+    public static void start() throws Exception {
+        initialize();
+        startConsuming();
         System.out.println("Serviço de Triagem iniciado. Aguardando pacientes...");
         Thread.currentThread().join();
     }
 
     public static void sendPaciente(Channel channel, Paciente paciente, String routingKey) throws Exception {
         String updatedMessage = gson.toJson(paciente);
-        channel.basicPublish(EXCHANGE_NAME, routingKey, null, updatedMessage.getBytes("UTF-8"));
+        channel.basicPublish(EXCHANGE_NAME, routingKey, null, updatedMessage.getBytes(StandardCharsets.UTF_8));
 
         if (routingKey.equals(LOGGER_KEY)) {
             System.out.println("Paciente " + paciente.getNome() + " ATUALIZADO no logger (Médico: " + paciente.getMedicoResponsavel() + ")");
         } else {
             System.out.println("Paciente " + paciente.getNome() + " ENCAMINHADO para " + paciente.getMedicoResponsavel() + " (Key: " + routingKey + ")");
+        }
+    }
+
+    public static void shutdown() {
+        try {
+            if (isConsuming) {
+                stopConsuming();
+            }
+            if (channel != null && channel.isOpen()) {
+                channel.close();
+            }
+            if (connection != null && connection.isOpen()) {
+                connection.close();
+            }
+        } catch (Exception e) {
+            System.err.println("[TRIAGEM] Erro ao desligar: " + e.getMessage());
         }
     }
 }

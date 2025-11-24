@@ -24,7 +24,7 @@ public class RabbitMQSender {
     public static void start() throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
-        factory.setUsername("user");
+        factory.setUsername("clinico_geral");
         factory.setPassword("password");
 
         Connection connection = factory.newConnection();
