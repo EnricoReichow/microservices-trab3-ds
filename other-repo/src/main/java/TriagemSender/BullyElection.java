@@ -19,7 +19,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class BullyElection {
     private static final String ELECTION_EXCHANGE = "election_exchange";
     private static final String COORDINATOR_EXCHANGE = "coordinator_exchange";
-    // runtime exchange name (may differ from ELECTION_EXCHANGE if broker already has a conflicting one)
     private String electionExchangeName = ELECTION_EXCHANGE;
     private static final String HEARTBEAT_EXCHANGE = "heartbeat_exchange";
     private static final int HEARTBEAT_INTERVAL_MS = 2000;
@@ -91,7 +90,6 @@ public class BullyElection {
         connection = factory.newConnection();
         channel = connection.createChannel();
 
-        // Use a dedicated election exchange name to avoid conflicts with existing exchanges
         electionExchangeName = ELECTION_EXCHANGE + "_direct";
         channel.exchangeDeclare(electionExchangeName, "direct", false);
         System.out.println("[BULLY] Usando exchange de eleição: " + electionExchangeName);
@@ -148,13 +146,10 @@ public class BullyElection {
 
         System.out.println("[BULLY] Processo " + processId + " iniciado. IDs conhecidos: " + knownProcessIds);
 
-        // Aguarda um pouco para garantir que outros processos estejam prontos
         Thread.sleep(1000);
 
-        // Inicia eleição inicial
         startElection();
 
-        // Inicia monitoramento do líder
         startLeaderMonitoring();
     }
 
@@ -178,8 +173,6 @@ public class BullyElection {
                 break;
 
             case "OK":
-                // Recebeu OK, então há processo com ID maior
-                // Marca que recebeu OK — não deve se autoproclamar coordenador
                 okReceived.set(true);
                 System.out.println("[BULLY] Processo " + processId + " recebeu OK (há processo maior respondendo)");
                 break;
@@ -225,7 +218,6 @@ public class BullyElection {
 
         System.out.println("[BULLY] ⚡ Processo " + processId + " INICIANDO ELEIÇÃO ⚡");
 
-        // Encontra processos com ID maior
         Set<Integer> higherProcesses = new HashSet<>();
         for (Integer id : knownProcessIds) {
             if (id > processId) {
@@ -233,14 +225,11 @@ public class BullyElection {
             }
         }
 
-        // reset OK tracker for this election
         okReceived.set(false);
 
         if (higherProcesses.isEmpty()) {
-            // Não há processos com ID maior, sou o coordenador
             becomeCoordinator();
         } else {
-            // Envia ELECTION para cada processo com ID maior (mensagens direcionadas)
             for (Integer higherId : higherProcesses) {
                 sendElectionMessageTo(higherId, new ElectionMessage("ELECTION", processId));
             }
@@ -248,7 +237,6 @@ public class BullyElection {
             // Aguarda respostas OK por ELECTION_TIMEOUT_MS
             ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
             executor.schedule(() -> {
-                // Se ainda estamos em eleição após timeout, assumimos que não houve resposta
                 if (electionInProgress.get()) {
                     if (!okReceived.get()) {
                         System.out.println("[BULLY] Timeout aguardando OK, assumindo coordenação");
@@ -319,7 +307,7 @@ public class BullyElection {
                     ElectionMessage heartbeat = new ElectionMessage("HEARTBEAT", processId);
                     String json = gson.toJson(heartbeat);
                     channel.basicPublish(HEARTBEAT_EXCHANGE, "", null, json.getBytes(StandardCharsets.UTF_8));
-                    System.out.println("[BULLY] ❤️ Coordenador " + processId + " enviou heartbeat");
+                    System.out.println("[BULLY] Coordenador " + processId + " enviou heartbeat");
                 } catch (IOException e) {
                     System.err.println("[BULLY] Erro ao enviar heartbeat: " + e.getMessage());
                 }
@@ -344,7 +332,7 @@ public class BullyElection {
                 long timeSinceLastHeartbeat = System.currentTimeMillis() - lastHeartbeatReceived;
 
                 if (timeSinceLastHeartbeat > HEARTBEAT_TIMEOUT_MS) {
-                    System.out.println("[BULLY] ⚠️ LÍDER " + currentLeaderId.get() + " FALHOU! Iniciando eleição...");
+                    System.out.println("[BULLY] LÍDER " + currentLeaderId.get() + " FALHOU! Iniciando eleição...");
                     currentLeaderId.set(-1);
                     new Thread(() -> startElection()).start();
                 }

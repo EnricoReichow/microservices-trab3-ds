@@ -10,7 +10,6 @@ public class Paciente {
     private String sintomas;
     private String medicoResponsavel;
 
-    // Construtor vazio (boa prática)
     public Paciente() {
     }
 
@@ -32,8 +31,6 @@ public class Paciente {
         this.estadoCivil = estadoCivil;
         this.sintomas = sintomas;
     }
-
-    // Getters e Setters (importantes para o Spring converter para JSON)
 
     public String getNome() {
         return nome;

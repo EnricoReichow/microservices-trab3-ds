@@ -18,17 +18,14 @@ public class RabbitConnectionLogger implements ApplicationRunner {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RabbitConnectionLogger.class);
 
-    // Injeta a fábrica de conexões
     private final ConnectionFactory connectionFactory;
 
-    // Injeta os valores para confirmar que foram lidos
     @Value("${app.rabbitmq.exchange}")
     private String exchangeName;
 
     @Value("${app.rabbitmq.queue}")
     private String queueName;
 
-    // Injeta o status do CLI
     @Value("${app.cli.enabled:false}")
     private boolean cliEnabled;
 
@@ -38,10 +35,8 @@ public class RabbitConnectionLogger implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        // Só executa este log se estiver em modo WEB (CLI desabilitado)
         if (!cliEnabled) {
             try {
-                // Tenta "pingar" o broker pegando o host e porta da configuração
                 String host = connectionFactory.getHost();
                 int port = connectionFactory.getPort();
 

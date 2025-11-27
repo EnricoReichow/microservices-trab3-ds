@@ -46,9 +46,8 @@ public class TriagemSenderMain {
 
             if (args.length == 1) {
                 idArg = args[0];
-                idsArg = envIds; // pode ser null
+                idsArg = envIds;
             } else if (envId != null || envIds != null) {
-                // se qualquer uma das env vars existir, usa as que existirem
                 idArg = envId;
                 idsArg = envIds;
                 System.out.println("[INFO] Usando variáveis de ambiente TRIAGEM_ID/TRIAGEM_IDS como fallback (parcialmente ou totalmente)");
@@ -126,12 +125,10 @@ public class TriagemSenderMain {
                 }
             });
 
-            // Inicia o sistema de eleição
             bullyElection.start();
 
             System.out.println("\n[INFO] Sistema iniciado. Aguardando eleição e mensagens...\n");
 
-            // Adiciona shutdown hook para limpeza
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 System.out.println("\n[INFO] Desligando serviço de triagem...");
                 bullyElection.shutdown();
@@ -139,7 +136,6 @@ public class TriagemSenderMain {
                 System.out.println("[INFO] Serviço encerrado.");
             }));
 
-            // Mantém a aplicação rodando
             Thread.currentThread().join();
 
         } catch (NumberFormatException e) {

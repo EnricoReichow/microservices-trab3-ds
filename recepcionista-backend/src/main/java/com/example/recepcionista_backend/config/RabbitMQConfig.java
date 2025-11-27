@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    // Injeta os valores do application.properties.BAK
     @Value("${app.rabbitmq.exchange}")
     private String exchangeName;
 
