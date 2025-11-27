@@ -1,5 +1,4 @@
 <template>
-  <!-- Modal -->
   <div 
     class="modal fade" 
     id="cadastroPacienteModal" 
@@ -24,14 +23,12 @@
         </div>
         
         <div class="modal-body">
-          <!-- Mensagem de Sucesso -->
           <div v-if="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
             <i class="bi bi-check-circle-fill me-2"></i>
             {{ successMessage }}
             <button type="button" class="btn-close" @click="limparMensagens"></button>
           </div>
 
-          <!-- Mensagem de Erro -->
           <div v-if="error" class="alert alert-danger alert-dismissible fade show" role="alert">
             <i class="bi bi-exclamation-triangle-fill me-2"></i>
             {{ error }}
@@ -40,7 +37,6 @@
 
           <form @submit.prevent="handleSubmit">
             <div class="row">
-              <!-- Nome -->
               <div class="col-md-12 mb-3">
                 <label for="nome" class="form-label">Nome Completo <span class="text-danger">*</span></label>
                 <input 
@@ -53,7 +49,6 @@
                 >
               </div>
 
-              <!-- Sexo Biológico -->
               <div class="col-md-6 mb-3">
                 <label for="sexoBiologico" class="form-label">Sexo Biológico <span class="text-danger">*</span></label>
                 <select 
@@ -69,7 +64,6 @@
                 </select>
               </div>
 
-              <!-- Data de Nascimento -->
               <div class="col-md-6 mb-3">
                 <label for="dataNascimento" class="form-label">Data de Nascimento <span class="text-danger">*</span></label>
                 <input 
@@ -85,7 +79,6 @@
                 >
               </div>
 
-              <!-- Tipo Sanguíneo -->
               <div class="col-md-6 mb-3">
                 <label for="tipoSanguineo" class="form-label">Tipo Sanguíneo <span class="text-danger">*</span></label>
                 <select 
@@ -107,7 +100,6 @@
                 </select>
               </div>
 
-              <!-- Estado Civil -->
               <div class="col-md-6 mb-3">
                 <label for="estadoCivil" class="form-label">Estado Civil <span class="text-danger">*</span></label>
                 <select 
@@ -125,7 +117,6 @@
                 </select>
               </div>
 
-              <!-- Sintomas -->
               <div class="col-md-12 mb-3">
                 <label for="sintomas" class="form-label">Sintomas <span class="text-danger">*</span></label>
                 <select 
@@ -247,7 +238,6 @@ const handleSubmit = async () => {
   
   if (result.success) {
     limparFormulario()
-    // Opcional: fechar o modal após 2 segundos
     setTimeout(() => {
       fecharModal()
     }, 2000)

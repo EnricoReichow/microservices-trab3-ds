@@ -10,7 +10,6 @@
     <div class="content">
       <h2 class="section-title">Lista de Pacientes</h2>
 
-      <!-- Loading -->
       <div v-if="loading" class="text-center py-5">
         <div class="spinner-border text-primary" role="status">
           <span class="visually-hidden">Carregando...</span>
@@ -18,13 +17,11 @@
         <p class="mt-3">Carregando pacientes...</p>
       </div>
 
-      <!-- Error -->
       <div v-else-if="error" class="alert alert-danger" role="alert">
         <i class="bi bi-exclamation-triangle-fill"></i>
         {{ error }}
       </div>
 
-      <!-- Tabela -->
       <div v-else class="table-container">
         <div class="table-wrapper">
           <table class="table table-hover">
@@ -80,7 +77,6 @@ const goBack = () => {
 
 const formatDate = (date) => {
   if (!date) return '-'
-  // Se vier no formato ISO, converte para dd/mm/yyyy
   if (date.includes('-')) {
     const [year, month, day] = date.split('-')
     return `${day}/${month}/${year}`
@@ -183,7 +179,6 @@ const formatDate = (date) => {
   vertical-align: middle;
 }
 
-/* Scrollbar customizado */
 .table-wrapper::-webkit-scrollbar {
   width: 8px;
 }

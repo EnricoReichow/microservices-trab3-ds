@@ -4,7 +4,6 @@
       <div class="col-12">
         <h1 class="text-center mb-4">Exemplo de Integração</h1>
         
-        <!-- Card de demonstração do Bootstrap -->
         <div class="card shadow-sm mb-4">
           <div class="card-header bg-primary text-white">
             <h5 class="mb-0">Bootstrap + Poppins Font</h5>
@@ -22,7 +21,6 @@
           </div>
         </div>
 
-        <!-- Demonstração de Vuex -->
         <div class="card shadow-sm mb-4">
           <div class="card-header bg-success text-white">
             <h5 class="mb-0">Vuex Store</h5>
@@ -35,7 +33,6 @@
           </div>
         </div>
 
-        <!-- Demonstração de Axios -->
         <div class="card shadow-sm">
           <div class="card-header bg-info text-white">
             <h5 class="mb-0">Axios API</h5>
@@ -72,7 +69,6 @@ const loading = ref(false)
 const apiResponse = ref(null)
 const apiError = ref(null)
 
-// Computed property do Vuex
 const counter = computed(() => store.state.counter)
 
 const incrementCounter = () => {
@@ -89,7 +85,6 @@ const testApiCall = async () => {
   apiError.value = null
   
   try {
-    // Exemplo de chamada API - substitua com seu endpoint real
     const response = await api.get('/test')
     apiResponse.value = JSON.stringify(response.data)
   } catch (error) {

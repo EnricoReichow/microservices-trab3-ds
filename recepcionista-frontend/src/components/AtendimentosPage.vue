@@ -10,7 +10,6 @@
     <div class="content">
       <h2 class="section-title">Lista de Atendimentos</h2>
 
-      <!-- Loading -->
       <div v-if="loading" class="text-center py-5">
         <div class="spinner-border text-primary" role="status">
           <span class="visually-hidden">Carregando...</span>
@@ -18,13 +17,11 @@
         <p class="mt-3">Carregando atendimentos...</p>
       </div>
 
-      <!-- Error -->
       <div v-else-if="error" class="alert alert-danger" role="alert">
         <i class="bi bi-exclamation-triangle-fill"></i>
         {{ error }}
       </div>
 
-      <!-- Tabela -->
       <div v-else class="table-container">
         <div class="table-wrapper">
           <table class="table table-hover">
@@ -80,7 +77,6 @@ const goBack = () => {
 
 const formatDate = (date) => {
   if (!date) return '-'
-  // Se vier no formato ISO (yyyy-mm-dd), converte para dd/mm/yyyy
   if (typeof date === 'string' && date.includes('-')) {
     const [year, month, day] = date.split('-')
     return `${day}/${month}/${year}`
@@ -89,9 +85,8 @@ const formatDate = (date) => {
 }
 
 const getPacienteId = (atendimento) => {
-  console.log('Atendimento completo:', atendimento) // Debug
+  console.log('Atendimento completo:', atendimento)
   
-  // Tenta várias possibilidades
   if (atendimento.paciente?.id) return atendimento.paciente.id
   if (atendimento.pacienteId) return atendimento.pacienteId
   if (atendimento.paciente_id) return atendimento.paciente_id
@@ -100,7 +95,6 @@ const getPacienteId = (atendimento) => {
 }
 
 const getPacienteNome = (atendimento) => {
-  // Tenta várias possibilidades
   if (atendimento.paciente?.nome) return atendimento.paciente.nome
   if (atendimento.pacienteNome) return atendimento.pacienteNome
   if (atendimento.paciente_nome) return atendimento.paciente_nome

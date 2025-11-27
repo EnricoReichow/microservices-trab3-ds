@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-// Configuração para a API de Recepcionista (POST)
 const apiRecepcionista = axios.create({
   baseURL: import.meta.env.VITE_API_RECEPCIONISTA_URL || 'http://localhost:8080/api/recepcionista',
   timeout: 30000,
@@ -9,16 +8,13 @@ const apiRecepcionista = axios.create({
   }
 })
 
-// Interceptor de requisição
 apiRecepcionista.interceptors.request.use(
   (config) => {
     console.log('🚀 Requisição Recepcionista:', config.method.toUpperCase(), config.url)
     console.log('📦 Payload:', config.data)
     
-    // Garante que o Content-Type seja sempre JSON
     config.headers['Content-Type'] = 'application/json'
     
-    // Se os dados não forem string, converte para JSON
     if (config.data && typeof config.data !== 'string') {
       config.data = JSON.stringify(config.data)
     }
@@ -31,7 +27,6 @@ apiRecepcionista.interceptors.request.use(
   }
 )
 
-// Interceptor de resposta
 apiRecepcionista.interceptors.response.use(
   (response) => {
     console.log('✅ Resposta Recepcionista recebida:', response.config.url, '- Status:', response.status)
