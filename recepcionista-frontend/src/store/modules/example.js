@@ -1,8 +1,4 @@
-// Exemplo de módulo Vuex
-// Você pode criar módulos separados para diferentes partes da aplicação
-
 const state = {
-  // Estado específico deste módulo
   items: []
 }
 
@@ -15,9 +11,6 @@ const mutations = {
 const actions = {
   async fetchItems({ commit }) {
     try {
-      // Exemplo de ação assíncrona
-      // const response = await api.get('/items')
-      // commit('SET_ITEMS', response.data)
     } catch (error) {
       console.error('Erro ao buscar items:', error)
     }

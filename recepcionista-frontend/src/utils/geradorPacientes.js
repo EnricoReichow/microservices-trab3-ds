@@ -71,7 +71,6 @@ export const tiposSanguineos = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'
 
 export const estadosCivis = ['Casado', 'Viúvo']
 
-// Função para gerar data de nascimento aleatória
 export function gerarDataNascimento() {
   const hoje = new Date()
   const anoAtual = hoje.getFullYear()
@@ -81,12 +80,11 @@ export function gerarDataNascimento() {
   const idade = Math.floor(Math.random() * (idadeMaxima - idadeMinima + 1)) + idadeMinima
   const ano = anoAtual - idade
   const mes = Math.floor(Math.random() * 12) + 1
-  const dia = Math.floor(Math.random() * 28) + 1 // Usando 28 para evitar problemas com meses
+  const dia = Math.floor(Math.random() * 28) + 1 
   
   return `${String(dia).padStart(2, '0')}/${String(mes).padStart(2, '0')}/${ano}`
 }
 
-// Função para calcular idade a partir de uma data DD/MM/YYYY
 export function calcularIdade(dataNascimento) {
   const [dia, mes, ano] = dataNascimento.split('/').map(Number)
   const hoje = new Date()
@@ -103,22 +101,17 @@ export function calcularIdade(dataNascimento) {
   return idade
 }
 
-// Função para gerar um paciente aleatório
 export function gerarPacienteAleatorio() {
-  // Escolhe aleatoriamente se será masculino ou feminino
   const isMasculino = Math.random() > 0.5
   
-  // Seleciona nome baseado no sexo
   const nomesArray = isMasculino ? nomesMasculinos : nomesFemininos
   const primeiroNome = nomesArray[Math.floor(Math.random() * nomesArray.length)]
   const sobrenome = sobrenomes[Math.floor(Math.random() * sobrenomes.length)]
   const nome = `${primeiroNome} ${sobrenome}`
   
-  // Gera data de nascimento
   const dataNascimento = gerarDataNascimento()
   const idade = calcularIdade(dataNascimento)
   
-  // Define estado civil baseado na idade
   let estadoCivil
   if (idade >= 18) {
     estadoCivil = estadosCivis[Math.floor(Math.random() * estadosCivis.length)]

@@ -10,7 +10,7 @@ const currentView = computed(() => store.getters.getCurrentView)
 
 const currentComponent = computed(() => {
   const view = currentView.value
-  console.log('Current view:', view) // Debug
+  console.log('Current view:', view)
   switch (view) {
     case 'pacientes':
       return PacientesPage

@@ -44,14 +44,12 @@
         </button>
       </div>
 
-      <!-- Mensagem de sucesso do cadastro em lote -->
       <div v-if="mostrarMensagemSucesso" class="alert alert-success mt-4 fade-in" role="alert">
         <i class="bi bi-check-circle-fill me-2"></i>
         {{ mensagemSucesso }}
       </div>
     </div>
 
-    <!-- Modal de Cadastro -->
     <CadastroPacienteModal />
   </div>
 </template>
@@ -101,10 +99,8 @@ const cadastrar10Pacientes = async () => {
       }
     } catch (error) {
       console.error(`Erro ao cadastrar paciente ${i}:`, error)
-      // Continua mesmo se der erro
     }
     
-    // Aguarda 500ms antes de cadastrar o próximo
     if (i < totalPacientes) {
       await new Promise(resolve => setTimeout(resolve, 500))
     }
@@ -113,7 +109,6 @@ const cadastrar10Pacientes = async () => {
   cadastrandoLote.value = false
   mensagemCadastro.value = ''
   
-  // Mostra mensagem de sucesso
   if (cadastradosComSucesso === totalPacientes) {
     mensagemSucesso.value = 'Todos os pacientes foram cadastrados!'
   } else {
@@ -122,7 +117,6 @@ const cadastrar10Pacientes = async () => {
   
   mostrarMensagemSucesso.value = true
   
-  // Esconde a mensagem após 5 segundos
   setTimeout(() => {
     mostrarMensagemSucesso.value = false
   }, 5000)
