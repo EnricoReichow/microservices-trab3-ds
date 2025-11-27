@@ -17,7 +17,6 @@ public class RabbitMQSender {
     private static final String CARDIO_KEY = "paciente.cardiologia";
     private static final String FALLBACK_CARDIO_KEY = "fallback.cardio";
 
-    // NOVO: Adicionada a routing key para o logger
     private static final String LOGGER_KEY = "paciente.log";
 
     private static final Gson gson = new Gson();
@@ -75,7 +74,6 @@ public class RabbitMQSender {
         channel.basicAck(response.getEnvelope().getDeliveryTag(), false);
     }
 
-    // NOVO: Método helper para enviar a atualização ao logger
     private static void sendPaciente(Channel channel, Paciente paciente, String routingKey) throws Exception {
         String updatedMessage = gson.toJson(paciente);
         channel.basicPublish(EXCHANGE_NAME, routingKey, null, updatedMessage.getBytes(StandardCharsets.UTF_8));

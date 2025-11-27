@@ -12,11 +12,10 @@ public class RabbitMQService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RabbitMQService.class);
 
-    // Injeta o template configurado no RabbitMQConfig
     private final RabbitTemplate rabbitTemplate;
     private final String exchangeName;
-    private final String routingKeyTriagem; // Chave da triagem
-    private final String routingKeyLog;     // Nova chave do logger
+    private final String routingKeyTriagem;
+    private final String routingKeyLog;
 
     public RabbitMQService(RabbitTemplate rabbitTemplate,
                            @Value("${app.rabbitmq.exchange}") String exchangeName,
@@ -42,7 +41,6 @@ public class RabbitMQService {
             LOGGER.error("Erro ao enviar paciente para o RabbitMQ: {}", e.getMessage(), e);
         }
 
-        // 2. Envia para a fila de Logger
         try {
             rabbitTemplate.convertAndSend(exchangeName, routingKeyLog, paciente);
             LOGGER.info("Paciente enviado para LOGGER [RK={}]: {}", routingKeyLog, paciente.getNome());

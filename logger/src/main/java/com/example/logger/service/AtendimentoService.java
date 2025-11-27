@@ -1,4 +1,3 @@
-// src/main/java/com/example/logger/service/AtendimentoService.java
 package com.example.logger.service;
 
 import com.example.logger.domain.PacienteDTO;
@@ -81,8 +80,6 @@ public class AtendimentoService {
 
         atendimentoRepository.save(atendimento);
 
-        // Only send Telegram when medicoResponsavel indicates discharge by a specialist:
-        // e.g. "Atendido pelo Cardiologista", "Atendido pelo Neurologista", "Atendido pelo Clínico Geral"
         if (medicoResponsavel != null && medicoResponsavel.startsWith(ATENDIDO_PELO_PREFIX)) {
             String especialista = medicoResponsavel.substring(ATENDIDO_PELO_PREFIX.length()).trim();
             String chatId = determineChatIdBySpecialist(especialista);
@@ -96,7 +93,6 @@ public class AtendimentoService {
         }
     }
 
-    // Novo método adicionado para listar todos os atendimentos
     public List<AtendimentoEntity> listarTodosAtendimentos() {
         return atendimentoRepository.findAll();
     }

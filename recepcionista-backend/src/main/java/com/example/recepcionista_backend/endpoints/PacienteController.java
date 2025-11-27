@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/recepcionista") // Define o caminho base para este controller
+@RequestMapping("/api/recepcionista")
 public class PacienteController {
 
     private final RabbitMQService rabbitMQService;
 
-    // Injeta o serviço do RabbitMQ
     public PacienteController(RabbitMQService rabbitMQService) {
         this.rabbitMQService = rabbitMQService;
     }
@@ -29,10 +28,7 @@ public class PacienteController {
      */
     @PostMapping
     public ResponseEntity<String> registrarPaciente(@RequestBody Paciente paciente) {
-        // Envia o paciente recebido via HTTP para o serviço do RabbitMQ
         rabbitMQService.sendPaciente(paciente);
-
-        // Retorna uma resposta HTTP 202 (Accepted)
         return ResponseEntity.accepted().body("Paciente " + paciente.getNome() + " recebido e enviado para processamento.");
     }
 }

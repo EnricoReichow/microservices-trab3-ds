@@ -1,6 +1,4 @@
 package com.example.logger.domain;
-    // Getters e Setters
-
 /**
  * Esta é a classe DTO (Data Transfer Object) que representa
  * a mensagem vinda do RabbitMQ.
@@ -16,7 +14,6 @@ public class PacienteDTO {
     private String sintomas;
     private String medicoResponsavel;
 
-    // Getters e Setters
     public String getNome() { return nome; }
 
     public void setNome(String nome) { this.nome = nome; }

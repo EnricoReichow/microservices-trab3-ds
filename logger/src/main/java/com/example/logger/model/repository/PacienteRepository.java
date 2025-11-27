@@ -8,8 +8,5 @@ import java.util.Optional;
 @Repository
 public interface PacienteRepository extends JpaRepository<PacienteEntity, Long> {
 
-    /**
-     * Busca um paciente pelo nome (que é único).
-     */
     Optional<PacienteEntity> findByNome(String nome);
 }

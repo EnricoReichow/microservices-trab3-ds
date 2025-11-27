@@ -98,8 +98,8 @@ public class RabbitMQSender {
             }
 
             try {
-                sendPaciente(channel, paciente, destinoKeyEspecialista);  // envia para a fila do especialista
-                sendPaciente(channel, paciente, LOGGER_KEY); // envio para o logger
+                sendPaciente(channel, paciente, destinoKeyEspecialista);
+                sendPaciente(channel, paciente, LOGGER_KEY);
             } catch (Exception e) {
                 System.out.println("Erro ao enviar Triagem para o RabbitMQ: " + e.getMessage());
             }
@@ -111,7 +111,7 @@ public class RabbitMQSender {
             tag -> System.out.println("[TRIAGEM] Consumer cancelado: " + tag));
 
         isConsuming = true;
-        System.out.println("[TRIAGEM] ✅ INICIOU consumo da fila de triagem (consumerTag: " + consumerTag + ")");
+        System.out.println("[TRIAGEM] INICIOU consumo da fila de triagem (consumerTag: " + consumerTag + ")");
     }
 
     /**
@@ -126,7 +126,7 @@ public class RabbitMQSender {
         if (channel != null && channel.isOpen()) {
             channel.basicCancel(consumerTag);
             isConsuming = false;
-            System.out.println("[TRIAGEM] ❌ PAROU consumo da fila de triagem");
+            System.out.println("[TRIAGEM] PAROU consumo da fila de triagem");
         }
     }
 

@@ -31,19 +31,14 @@ public class PacienteConsumer {
         LOGGER.info("Mensagem recebida da fila: {}", pacienteDTO.toString());
 
         try {
-            // 1. Processa (cria ou atualiza) o cadastro do paciente
             PacienteEntity paciente = pacienteService.processarPaciente(pacienteDTO);
 
-            // 2. Processa (cria ou atualiza) o atendimento
             atendimentoService.processarAtendimento(paciente, pacienteDTO);
 
             LOGGER.info("Paciente {} processado com sucesso (ID: {})", paciente.getNome(), paciente.getId());
 
         } catch (Exception e) {
-            // Se falhar, a mensagem deve ir para uma Dead Letter Queue (DLQ)
-            // (Configuração de DLQ não inclusa neste escopo, mas é recomendada)
             LOGGER.error("Erro ao processar paciente da fila: {}", e.getMessage(), e);
-            // Re-lança a exceção para o Spring AMQP tratar (ex: retry, DLQ)
             throw new RuntimeException("Falha no processamento da mensagem do paciente.", e);
         }
     }

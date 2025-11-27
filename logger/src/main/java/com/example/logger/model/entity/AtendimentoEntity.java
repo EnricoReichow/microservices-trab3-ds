@@ -26,7 +26,6 @@ public class AtendimentoEntity extends BaseEntity {
     @Column(name = "data_atendimento", nullable = false)
     private LocalDate dataAtendimento;
 
-    // Getters e Setters
     public Long getId() { return id; }
 
     public void setId(Long id) { this.id = id; }
